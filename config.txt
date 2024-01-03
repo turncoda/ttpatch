@@ -1,0 +1,20 @@
+game_pak_folder=C:\Program Files (x86)\Steam\steamapps\common\Pseudoregalia\pseudoregalia\Content\Paks
+
+title=My Cool Course
+author=MyName
+
+save_point_location=150,0,0
+player_start_location=600,0,0
+player_start_yaw=180
+
+dream_breaker=true
+slide=true
+indignation=false
+sun_greaves=true
+sunsetter=true
+solar_wind=true
+cling_gem=true
+ascendant_light=true
+strikebreak=false
+soul_cutter=false
+heliacal_power=true
