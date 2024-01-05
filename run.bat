@@ -6,7 +6,7 @@ set pseudopreset=".\deps\pseudopreset-v1\pseudopreset.exe"
 set repak=".\deps\repak-v0.1.8-x86_64-pc-windows-msvc\repak.exe"
 
 set player_start_tag=myStart
-set original_level=Zone_Library
+set original_level=ZONE_LowerCastle
 set mount_point=../../../pseudoregalia/Content/Mods
 
 echo ### Reading from config.txt...
@@ -37,19 +37,19 @@ echo ### Transplanting BP_CourseController into level %original_level%...
 REM The following indices were obtained using `uedit.exe --dump` and are
 REM recorded here for reference:
 REM
-REM 253 BP_SavePoint_C
-REM 427 BP_SavePoint_C > DefaultSceneRoot
-REM 356 BP_SavePoint_C > associatedPlayerStart
-REM 295 BP_SavePoint_C > associatedPlayerStart > CapsuleComponent
+REM  715 BP_SavePoint_C
+REM 1532 BP_SavePoint_C > DefaultSceneRoot
+REM 1271 BP_SavePoint_C > associatedPlayerStart
+REM 1005 BP_SavePoint_C > associatedPlayerStart > CapsuleComponent
 
 echo ### Patching PlayerStart and SavePoint in %original_level%...
 %uedit% ^
 -i int1.umap ^
 -o int2.umap ^
---edit-export "427.RelativeLocation.RelativeLocation=%save_point_location%" ^
---edit-export "295.RelativeLocation.RelativeLocation=%player_start_location%" ^
---edit-export "295.RelativeRotation.RelativeRotation=0,%player_start_yaw%,0" ^
---edit-export "356.PlayerStartTag=%player_start_tag%" ^
+--edit-export "1532.RelativeLocation.RelativeLocation=%save_point_location%" ^
+--edit-export "1005.RelativeLocation.RelativeLocation=%player_start_location%" ^
+--edit-export "1005.RelativeRotation.RelativeRotation=0,%player_start_yaw%,0" ^
+--edit-export "1271.PlayerStartTag=%player_start_tag%" ^
 --rename-import "DT_SampleWaypointTable>DT_%output_map_name%" ^
 --rename-import "/Game/Mods/TimeTrial/DT_SampleWaypointTable>/Game/Mods/TimeTrial/Data/DT_%output_map_name%"
 
@@ -57,7 +57,9 @@ echo ### Disabling some actors in %original_level%...
 %uedit% ^
 -i int2.umap ^
 -o %out_dir%\Maps\%output_map_name%.umap ^
---disable-actor-by-index 253 ^
+--disable-actor-by-index 716 ^
+--disable-actor-by-index 717 ^
+--disable-actor-by-index 718 ^
 --disable-actor-by-name BP_LockDoor_C ^
 --disable-actor-by-name BP_BreakableWall_C ^
 --disable-actor-by-name BP_UpgradeBase_C ^
